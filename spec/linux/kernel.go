@@ -27,7 +27,8 @@ func (g *KernelGenerator) Generate() (interface{}, error) {
 		"release": []string{"uname", "-r"},
 		"version": []string{"uname", "-v"},
 		"machine": []string{"uname", "-m"},
-		"os":      []string{"uname", "-o"},
+		"os":      []string{"uname", "-s"},
+		//"os":      []string{"uname", "-o"},
 	}
 
 	results := make(map[string]string)

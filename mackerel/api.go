@@ -2,6 +2,7 @@ package mackerel
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -87,7 +88,10 @@ func (api *API) do(req *http.Request) (resp *http.Response, err error) {
 		}
 	}
 
-	client := &http.Client{} // same as http.DefaultClient
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr} // same as http.DefaultClient
 	client.Timeout = apiRequestTimeout
 	resp, err = client.Do(req)
 	if err != nil {

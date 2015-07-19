@@ -61,6 +61,10 @@ func (g *CPUGenerator) Generate() (interface{}, error) {
 			cur["cache_size"] = matches[1]
 		} else if matches := regexp.MustCompile(`^flags\s+:\s+(.*)$`).FindStringSubmatch(line); matches != nil {
 			cur["flags"] = regexp.MustCompile(` `).Split(matches[1], -1)
+		} else if matches := regexp.MustCompile(`^Processor name\s+:\s+(.*)$`).FindStringSubmatch(line); matches != nil {
+			cur = make(map[string]interface{})
+			cur["model_name"] = matches[1]
+			results = append(results, cur)
 		}
 	}
 	if err := scanner.Err(); err != nil {

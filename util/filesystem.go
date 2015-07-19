@@ -49,7 +49,8 @@ func init() {
 	case "freebsd":
 		dfOpt = []string{"-Pkt", "noprocfs,devfs,fdescfs,nfs,cd9660"}
 	default:
-		dfOpt = []string{"-P"}
+		dfOpt = []string{"-k"}
+		//dfOpt = []string{"-P"}
 	}
 }
 
