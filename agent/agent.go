@@ -34,7 +34,7 @@ func (agent *Agent) CollectMetrics(collectedTime time.Time) *MetricsResult {
 }
 
 // Watch XXX
-func (agent *Agent) Watch() chan *MetricsResult {
+func (agent *Agent) Watch() <-chan *MetricsResult {
 
 	metricsResult := make(chan *MetricsResult)
 	ticker := make(chan time.Time)

@@ -190,7 +190,7 @@ func start(conf *config.Config, termCh chan struct{}) error {
 
 var maxTerminatingInterval = 30 * time.Second
 
-func signalHandler(c chan os.Signal, ctx *command.Context, termCh chan struct{}) {
+func signalHandler(c <-chan os.Signal, ctx *command.Context, termCh chan<- struct{}) {
 	received := false
 	for sig := range c {
 		if sig == syscall.SIGHUP {

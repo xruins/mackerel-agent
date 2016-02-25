@@ -139,7 +139,7 @@ const (
 	loopStateTerminating
 )
 
-func loop(c *Context, termCh chan struct{}) error {
+func loop(c *Context, termCh <-chan struct{}) error {
 	quit := make(chan struct{})
 	defer close(quit) // broadcast terminating
 
@@ -273,7 +273,7 @@ func loop(c *Context, termCh chan struct{}) error {
 	}
 }
 
-func updateHostSpecsLoop(c *Context, quit chan struct{}) {
+func updateHostSpecsLoop(c *Context, quit <-chan struct{}) {
 	for {
 		c.UpdateHostSpecs()
 		select {
@@ -285,7 +285,7 @@ func updateHostSpecsLoop(c *Context, quit chan struct{}) {
 	}
 }
 
-func enqueueLoop(c *Context, postQueue chan *postValue, quit chan struct{}) {
+func enqueueLoop(c *Context, postQueue chan<- *postValue, quit <-chan struct{}) {
 	metricsResult := c.Agent.Watch()
 	for {
 		select {
@@ -548,7 +548,7 @@ func NewAgent(conf *config.Config) *agent.Agent {
 }
 
 // Run starts the main metric collecting logic and this function will never return.
-func Run(c *Context, termCh chan struct{}) error {
+func Run(c *Context, termCh <-chan struct{}) error {
 	logger.Infof("Start: apibase = %s, hostName = %s, hostID = %s", c.Config.Apibase, c.Host.Name, c.Host.ID)
 
 	err := loop(c, termCh)

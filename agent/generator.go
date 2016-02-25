@@ -9,7 +9,7 @@ import (
 
 var logger = logging.GetLogger("agent")
 
-func generateValues(generators []metrics.Generator) chan metrics.Values {
+func generateValues(generators []metrics.Generator) <-chan metrics.Values {
 	processed := make(chan metrics.Values)
 	finish := make(chan bool)
 	result := make(chan metrics.Values)
