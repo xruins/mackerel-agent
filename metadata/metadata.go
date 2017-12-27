@@ -11,6 +11,7 @@ import (
 
 	"github.com/mackerelio/golib/logging"
 	"github.com/mackerelio/mackerel-agent/config"
+	"github.com/mackerelio/mackerel-agent/util"
 )
 
 var logger = logging.GetLogger("metadata")
@@ -85,7 +86,7 @@ func (g *Generator) Save(metadata interface{}) error {
 	if err := os.MkdirAll(filepath.Dir(g.Cachefile), 0755); err != nil {
 		return err
 	}
-	if err := writeFileAtomically(g.Cachefile, data); err != nil {
+	if err := util.WriteFileAtomically(g.Cachefile, data); err != nil {
 		return fmt.Errorf("failed to write the metadata to the cache file: %v", err)
 	}
 	return nil
@@ -95,24 +96,6 @@ func (g *Generator) Save(metadata interface{}) error {
 func (g *Generator) Clear() error {
 	g.PrevMetadata = nil
 	return os.Remove(g.Cachefile)
-}
-
-// writeFileAtomically writes contents to the file atomically
-func writeFileAtomically(f string, contents []byte) error {
-	// MUST be located on same disk partition
-	tmpf, err := ioutil.TempFile(filepath.Dir(f), "tmp")
-	if err != nil {
-		return err
-	}
-	// os.Remove here works successfully when tmpf.Write fails or os.Rename fails.
-	// In successful case, os.Remove fails because the temporary file is already renamed.
-	defer os.Remove(tmpf.Name())
-	_, err = tmpf.Write(contents)
-	tmpf.Close() // should be called before rename
-	if err != nil {
-		return err
-	}
-	return os.Rename(tmpf.Name(), f)
 }
 
 const defaultExecutionInterval = 10 * time.Minute
