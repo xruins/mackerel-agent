@@ -652,19 +652,7 @@ func (s FileSystemHostIDStorage) SaveHostID(id string) error {
 	if err != nil {
 		return err
 	}
-
-	file, err := os.Create(s.HostIDFile())
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	_, err = file.Write([]byte(id))
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return util.WriteFileAtomically(s.HostIDFile(), []byte(id))
 }
 
 // DeleteSavedHostID deletes the mackerel-agent's id file.

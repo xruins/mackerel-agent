@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"github.com/mackerelio/golib/logging"
+	"github.com/mackerelio/mackerel-agent/util"
 )
 
 var logger = logging.GetLogger("pidfile")
@@ -36,14 +37,7 @@ func Create(pidfile string) error {
 	if err != nil {
 		return err
 	}
-	file, err := os.Create(pidfile)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	_, err = fmt.Fprintf(file, "%d", os.Getpid())
-	return err
+	return util.WriteFileAtomically(pidfile, []byte(strconv.Itoa(os.Getpid())))
 }
 
 // Remove pidfile
