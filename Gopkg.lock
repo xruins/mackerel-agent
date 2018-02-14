@@ -2,28 +2,28 @@
 
 
 [[projects]]
+  branch = "master"
   name = "github.com/BurntSushi/toml"
   packages = ["."]
-  revision = "b26d9c308763d68093482582cea63d69be07a0f0"
-  version = "v0.3.0"
+  revision = "a368813c5e648fee92e5f6c30e3944ff9d5e8895"
 
 [[projects]]
+  branch = "master"
   name = "github.com/Songmu/prompter"
   packages = ["."]
-  revision = "b5721e8d556682bcef33262731d98a39dee14dc4"
-  version = "0.1.0"
+  revision = "f49666b0047d12850875d771340e1d862d9e7a0c"
 
 [[projects]]
+  branch = "master"
   name = "github.com/Songmu/retry"
   packages = ["."]
-  revision = "3a202b1bab4254860f7f71d04c28133026100493"
-  version = "v0.0.1"
+  revision = "3d913ef13826a2183b18cbfb88925a7735bf3635"
 
 [[projects]]
   name = "github.com/Songmu/timeout"
   packages = ["."]
-  revision = "9ba68abc43a87aa2351db88bd86d018ea7bbe0e9"
-  version = "v0.2.1"
+  revision = "47fa848e597794370c3b10ce27396b98c3aa807d"
+  version = "v0.3.0"
 
 [[projects]]
   branch = "master"
@@ -85,29 +85,20 @@
   revision = "9961a876eb5f0b4c48c21eb75ec963a2bb8e1a4d"
 
 [[projects]]
+  branch = "master"
   name = "github.com/pkg/errors"
   packages = ["."]
-  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
-  version = "v0.8.0"
-
-[[projects]]
-  name = "github.com/shirou/gopsutil"
-  packages = [
-    "cpu",
-    "host",
-    "internal/common",
-    "mem",
-    "net",
-    "process"
-  ]
-  revision = "c432be29ccce470088d07eea25b3ea7e68a8afbb"
-  version = "v2.18.01"
+  revision = "30136e27e2ac8d167177e8a583aa4c3fea5be833"
 
 [[projects]]
   branch = "master"
-  name = "github.com/shirou/w32"
-  packages = ["."]
-  revision = "bb4de0191aa41b5507caa14b0650cdbddcd9280b"
+  name = "github.com/shirou/gopsutil"
+  packages = [
+    "host",
+    "internal/common",
+    "process"
+  ]
+  revision = "32a44bdc39e48b27eb0430edcd9c77920d161864"
 
 [[projects]]
   branch = "master"
@@ -152,6 +143,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0768b3df59ae24038efe129b38b07cb52bcd0e9f4a7209b66df4427a8ef4bb02"
+  inputs-digest = "9904616bd63f34954b41b71332a881da59d76340ceacdbaf38c9730850dc52f2"
   solver-name = "gps-cdcl"
   solver-version = 1
