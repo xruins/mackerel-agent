@@ -20,6 +20,7 @@ install:
 script:
 - make lint
 - make convention
+- '([ "$TRAVIS_EVENT_TYPE" = "cron" ] && dep ensure -update) || true'
 - make cover
 - test `gofmt -l . | wc -l` = 0
 - make crossbuild
