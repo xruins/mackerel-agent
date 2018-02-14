@@ -24,7 +24,8 @@ run: build
 	./build/$(MACKEREL_AGENT_NAME) $(ARGS)
 
 deps:
-	go get -d -v -t ./...
+	go get -u github.com/golang/dep/cmd/dep
+	dep ensure
 	go get github.com/golang/lint/golint
 	go get github.com/pierrre/gotestcover
 	go get github.com/Songmu/goxz/cmd/goxz
@@ -32,7 +33,7 @@ deps:
 	go get github.com/motemen/go-cli/gen
 
 lint: deps
-	go tool vet -all -printfuncs=Criticalf,Infof,Warningf,Debugf,Tracef .
+	go vet -all -printfuncs=Criticalf,Infof,Warningf,Debugf,Tracef ./...
 	_tools/go-linter $(BUILD_OS_TARGETS)
 
 convention:
