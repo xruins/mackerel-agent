@@ -1,4 +1,4 @@
-package stdnet
+package linux
 
 import (
 	"net"
